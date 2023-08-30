@@ -128,17 +128,17 @@ const roleState = (req, res) => {
 
 const getAllUsers = (req, res) => {
   tokenAuth = req.headers.authorization;
-  jwt.verify(tokenAuth.split(" ")[0], "ClaveSecreta", (err, token) => {
+  jwt.verify(tokenAuth.split(" ")[1], "ClaveSecreta", (err, token) => {
     if (err) {
-      res.status(err.status).json({ message: "error" });
+      res.status(400).json({ message: "error" });
     } else {
       tableRoles.findOne({ where: { id_user: token.userId } }).then((role) => {
-        if (role.id_role === 1) {
+        if (+role.id_role === 1) {
           tableUser.findAll().then((users) => {
             if (!users) {
               res.status(404).send("Error, no hay usuarios");
             }
-            res.status(200).json({ message: "success", data: users });
+            res.status(200).json({ message: "success", users: users });
           });
         } else {
           res.status(403).json({ message: "Acceso restringido" });
