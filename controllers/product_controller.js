@@ -10,6 +10,11 @@ const sequelize = new Sequelize({
 tableCars = sequelize.define(
   "cars",
   {
+    description: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: false,
+    },
     model: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -51,6 +56,7 @@ tableCars = sequelize.define(
 const add_car = (req, res) => {
   tableCars
     .create({
+      description: req.body.description,
       model: req.body.model,
       year: req.body.year,
       price: req.body.price,
@@ -60,6 +66,7 @@ const add_car = (req, res) => {
     })
     .then(() => {
       console.log("Added car");
+      tableCars.findOne({ order: [["id", "DESC"]] }).then((car) => {});
       res.status(200).json({ message: "Added car" });
     })
     .catch((err) => {
@@ -93,9 +100,9 @@ const rentCar = (req, res) => {
 };
 
 const updateCar = (req, res) => {
-  console.log("este es el body", req.body);
   const id = req.body.id;
   const updateCar = {
+    description: req.body.description,
     model: req.body.model,
     year: req.body.year,
     price: req.body.price,
@@ -107,6 +114,7 @@ const updateCar = (req, res) => {
   tableCars
     .update(
       {
+        description: updateCar.description,
         model: updateCar.model,
         year: updateCar.year,
         price: updateCar.price,

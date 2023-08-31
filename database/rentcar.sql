@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-08-2023 a las 00:44:27
+-- Tiempo de generación: 31-08-2023 a las 07:09:51
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -44,7 +44,9 @@ INSERT INTO `assignedrole` (`id`, `id_user`, `id_role`) VALUES
 (4, 6, 2),
 (5, 7, 2),
 (6, 8, 2),
-(7, 9, 2);
+(7, 9, 2),
+(8, 10, 1),
+(9, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -54,6 +56,7 @@ INSERT INTO `assignedrole` (`id`, `id_user`, `id_role`) VALUES
 
 CREATE TABLE `cars` (
   `id` int(11) NOT NULL,
+  `description` text NOT NULL,
   `model` varchar(60) NOT NULL,
   `year` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -67,10 +70,14 @@ CREATE TABLE `cars` (
 -- Volcado de datos para la tabla `cars`
 --
 
-INSERT INTO `cars` (`id`, `model`, `year`, `price`, `km`, `color`, `createdIn`, `currentClientId`) VALUES
-(1, 'BMW X5 EDITADO', 2025, 20005000, 120, 'Rojo', '2023-08-27', 0),
-(2, 'BMW X4', 2023, 20000000, 154, 'Azul', '2023-08-30', NULL),
-(3, 'Camaro', 2023, 150000000, 800, 'Amarillo', '2023-08-30', NULL);
+INSERT INTO `cars` (`id`, `description`, `model`, `year`, `price`, `km`, `color`, `createdIn`, `currentClientId`) VALUES
+(17, 'Con dos poderosos motores eléctricos y el sistema eléctrico de tracción a los cuatro ruedas BMW xDrive, el BMW iX ofrece una extraordinario rendimiento eléctrico: una potencia de 523 HP* impulsa el BMW iX xDrive50 de 0 a 100 km/h en 4,6 segundos (BMW iX xDrive40: 326 HP*; 0–100 km/h en 6,1 s). El par disponible al instante y la aceleración continua desde parado permiten al BMW iX responder con precisión y espontaneidad a cada movimiento del pedal del acelerador y ofrecer una experiencia de conducción única.', 'BMW iX, CON 523 HP', 2023, 20000, 0, 'Rojo', '2023-08-31', NULL),
+(18, 'Gracias a la combinación de un eficiente concepto de propulsión, un diseño aerodinámico y una potente batería de alto voltaje, el BMW iX3 ofrece una autonomía de hasta 460 kilómetros*. Las innovadoras tecnologías, como la recuperación de la energía de frenado, garantizan un extra de autonomía y permiten un consumo de energía de 18,5 kWh/100 km (WLTP)', 'BMW iX3', 2023, 15000, 0, 'Azul', '2023-08-31', NULL),
+(19, 'Una rebeldía inspiradora: la gama BMW X4 M combina el potencial de alto rendimiento y la exclusividad de un modelo M con el concepto avanzado de un BMW X4. Elige entre cuatro excepcionales Sports Activity Coupés (SAC): el BMW X4 M viene equipado con ADN de competición y ofrece un dinamismo de conducción del más alto nivel; estas características se refuerzan aún más en el BMW X4 M Competition, que ofrece las máximas prestaciones y un equipamiento exclusivo para disfrutar de un placer de conducir apasionante hasta el límite. El BMW X4 M40i se presentan en plena forma en cualquier trayecto e impresionan con una inteligente simbiosis de rendimiento, confort y eficiencia.\n', 'BMW X4 M Competition, BMW X4 M, BMW X4 M40i', 2023, 400000, 0, 'Amarillo', '2023-08-31', NULL),
+(20, 'Cuando te acercas a los modelos Sport Hybrid, Sport-L Hybrid o Sport Touring Hybrid, puedes apreciar un distintivo estilo deportivo y un tren motriz de alta respuesta de 204 caballos de fuerza*, todo con una clasificación de mpg de 40 ciudad / 34 autopista.', 'CR-V', 2024, 200000, 20, 'Blanco', '2023-08-31', NULL),
+(21, 'Con el impulso de nuestra determinación implacable de mejorar constantemente, no solo creamos el Civic más potente hasta el momento, sino también el más ágil. Con el sistema de cuatro modos de conducción (que incluye +R, Individual, Sport y Comfort), podrás pasar de la pista a la calle al instante.', 'CIVIC TYPE R', 2024, 50000, 14, 'Negro', '2023-08-31', NULL),
+(22, 'La Passport TrailSport está diseñada para explorar todos los terrenos. El portaequipajes está listo para los accesorios de carga,* y el sistema de tracción integral i-VTM4® te permite disfrutar de un viaje más suave en terrenos difíciles. En el interior, un abanico de detalles de estilo distintivos le da al interior una apariencia a la altura de la belleza de la naturaleza.\n', 'PASSPORT', 2024, 30000, 500, 'Blanco', '2023-08-31', NULL),
+(23, 'El BMW X5 M pone de manifiesto sus dotes de liderazgo con sus poderosas proporciones, exclusivo diseño M y extraordinario rendimiento. Descubre tres SAV (Sports Activity Vehicles) extrovertidos: el modelo BMW X5 M50i convence por su combinación única de potencia, comodidad y eficiencia. El BMW X5 M con sistema M xDrive impresiona con su interior exclusivo y un dinamismo de conducción marcado por sus genes de competición. Una experiencia de conducción cargada de adrenalina aún mejor en el BMW X5 M Competition, con sistema M xDrive, más potente y llamativo. Maneja hoy uno de nuestros autos familiares y ¡vive una nueva aventura sobre cuatro!', 'BMW X5 Competition', 2023, 500000, 0, 'Azul', '2023-08-31', NULL);
 
 -- --------------------------------------------------------
 
@@ -116,13 +123,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `lastName`, `address`, `phone`, `email`, `rentID`, `rentDays`, `password`, `createdIn`) VALUES
-(1, 'kevin', 'clift', 'teresa wilms montt', 12345678, 'kevin.clift@hotmail.com', 0, 0, '$2b$10$gTOoBaMvT7Fb.7e1PEJR8u1G104CQSCdEr0CWsqucg4mZkZo.4.4O', '2023-08-27'),
-(2, 'kevin', 'clift', 'teresa wilms montt', 12345678, 'kevin.clift.b@hotmail.com', 0, 0, '$2b$10$Qq8/tPV/oZmTXQwC7AYZlubOD/.0w2MteqqF0xlwj0jH0fNMNzZae', '2023-08-27'),
-(4, 'kevin', 'clift', 'ttttt', 12345678, 'kevin.clift.b@gmail.com', 0, 0, '$2b$10$yjefATJLMutkOxpZNkdzjOS9RkjLKk8m.WWJidzrV1drb6mig3rw6', '2023-08-27'),
-(5, 'Kevin Lisandro Clift Buzeta', 'clift', 'sdkhjasjdh', 12345678, 'kevin@gmail.com', 0, 0, '$2b$10$Sx/1UZtu0phYmnG9R/o/mOvcqQKjBF4G3Jic14V.47/W1SpY.rrIC', '2023-08-27'),
-(6, 'kevin', 'clift', 'asdasd', 123456, 'kevi@hotmail.com', 0, 0, '$2b$10$Cx2FaYixn//zr0h4Joj4Su9rKGlg4zbOIC5ZZAId./57H.YsCr.aO', '2023-08-27'),
-(7, 'amorcito 1', 'amor2', '123', 2147483647, 'chirihuilla@hotmail.com', 0, 0, '$2b$10$CdwqtYl1tyLlWeIWYZ8nR.3O5rVZZmskCNgW959snnd16djXmFpIa', '2023-08-27'),
-(9, 'juanito', 'Orosco', 'teresa wilmsmontt', 987654321, 'prueba@hotmail.com', 0, 0, '$2b$10$enQ9N9Uociu2Vzo5theIEOihXEZ2Pp/dnMs7FImvIbpUWBqQGOIDq', '2023-08-29');
+(10, 'admin', 'root', 'Universidad Tarapacá', 569723187, 'admin@hotmail.com', 0, 0, '$2b$10$qKh4NYUbFeJUkPf7XPF2duNqdQrmGlK70L.WwdcXJLd2L2bqeUR5S', '2023-08-31'),
+(11, 'usuario', 'numero_1', 'la tirana', 123456789, 'prueba@hotmail.com', 0, 0, '$2b$10$GS9IV6m5JbLe.a/R.EWuTODgX.kPSH2g5vBGkmYG./cVp8Dx1b5ou', '2023-08-31');
 
 --
 -- Índices para tablas volcadas
@@ -160,13 +162,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `assignedrole`
 --
 ALTER TABLE `assignedrole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -178,7 +180,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
